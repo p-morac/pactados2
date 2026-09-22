@@ -1,0 +1,255 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ───────────────────────── Tokens ─────────────────────────
+   Paleta y tipografías tomadas de pactados.vercel.app:
+   Bebas Neue para títulos, DM Sans para texto, fuego naranja sobre crema. */
+
+@theme inline {
+  --font-display: var(--font-bebas, "Bebas Neue"), Impact, sans-serif;
+  --font-body: var(--font-dm-sans, "DM Sans"), system-ui, sans-serif;
+}
+
+@theme {
+  --color-papel: #f5f0e8;
+  --color-crema: #fff9ef;
+  --color-arena: #f4d9af;
+  --color-borde: #efd3b1;
+  --color-fuego: #ff8a2f;
+  --color-fuego-oscuro: #ff681b;
+  --color-fuego-texto: #e0661f;
+  --color-brasa: #c9531d;
+  --color-tinta: #2a1409;
+  --color-cafe: #876d5a;
+  --color-etiqueta: #c3834c;
+  --color-error: #d4452f;
+
+  --color-mente: #d9695f;
+  --color-salud: #2f9e5f;
+  --color-actividad: #e8782b;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-papel);
+    color: #1a1a1a;
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background: rgba(255, 138, 47, 0.28);
+  }
+}
+
+/* ─────────────────────── Componentes ───────────────────────
+   En @layer components para que las utilidades de Tailwind
+   puedan sobrescribirlas (padding, display, posición…). */
+
+@layer components {
+  /* Fondo de las pantallas de acceso: crema arriba, brasa abajo (hero de la landing). */
+  .escenario-fuego {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 8%, rgba(255, 248, 228, 0.98), transparent 28%),
+      radial-gradient(circle at 76% 18%, rgba(255, 221, 166, 0.52), transparent 26%),
+      linear-gradient(180deg, #f7eedc 0%, #f4d9af 34%, #f2a45c 68%, #da6a31 88%, #c45526 100%);
+  }
+
+  /* Fondo de la app: la versión suave de /retos. */
+  .escenario-crema {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: clip;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(255, 251, 245, 0.95), transparent 34%),
+      radial-gradient(circle at 92% 14%, rgba(255, 212, 120, 0.24), transparent 30%),
+      radial-gradient(circle at 70% 96%, rgba(255, 157, 66, 0.16), transparent 34%),
+      linear-gradient(180deg, #f7eedc 0%, #f6e3c4 32%, #f4d9b2 66%, #f7ecdc 100%);
+  }
+
+  .orbe {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(18px);
+    pointer-events: none;
+  }
+
+  .orbe-izquierda {
+    left: -6rem;
+    top: -3rem;
+    height: 18rem;
+    width: 18rem;
+    background: rgba(255, 237, 173, 0.45);
+  }
+
+  .orbe-derecha {
+    right: -4rem;
+    bottom: 8%;
+    height: 15rem;
+    width: 15rem;
+    background: rgba(255, 132, 63, 0.24);
+  }
+
+  .rejilla {
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(96, 58, 25, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(96, 58, 25, 0.08) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 82%);
+  }
+
+  .garabato {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .destello {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+
+  .destello::before,
+  .destello::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 999px;
+    background: rgba(162, 102, 51, 0.45);
+    transform: translate(-50%, -50%);
+  }
+
+  .destello::before {
+    width: 3px;
+    height: 16px;
+  }
+
+  .destello::after {
+    width: 16px;
+    height: 3px;
+  }
+
+  /* Texto oscuro con textura y profundidad (títulos del hero). */
+  .titulo-solido {
+    color: transparent;
+    background-image:
+      linear-gradient(180deg, #756354 0%, #5f4d40 18%, #4d3b31 38%, #3a2b24 58%, #281d18 78%, #17100d 100%),
+      linear-gradient(90deg, rgba(170, 142, 121, 0.1) 0%, rgba(108, 84, 70, 0.03) 24%, rgba(24, 15, 12, 0.12) 64%, rgba(148, 120, 100, 0.08) 100%),
+      repeating-linear-gradient(90deg, rgba(146, 120, 101, 0.04) 0 7px, rgba(41, 28, 22, 0.05) 7px 13px);
+    background-blend-mode: normal, overlay, soft-light;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 1px rgba(33, 21, 16, 0.2);
+    text-shadow:
+      0 1px 0 rgba(120, 96, 80, 0.16),
+      0 2px 2px rgba(71, 55, 47, 0.24),
+      0 4px 5px rgba(48, 35, 29, 0.22),
+      0 8px 12px rgba(31, 21, 17, 0.18),
+      0 14px 24px rgba(43, 28, 22, 0.16);
+  }
+
+  /* Palabra con el gradiente de fuego (ámbar → naranja → rojo). */
+  .texto-fuego {
+    display: inline-block;
+    color: transparent;
+    background-image: linear-gradient(to right, #ffb300, #ff6a00, #a80000, #ff6a00, #ffb300);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 1px rgba(96, 30, 11, 0.24);
+    filter: saturate(1.55) contrast(1.28) brightness(1.06);
+    text-shadow:
+      0 1px 0 rgba(255, 221, 140, 0.18),
+      0 2px 2px rgba(214, 121, 40, 0.26),
+      0 4px 5px rgba(155, 61, 20, 0.24),
+      0 8px 12px rgba(89, 28, 10, 0.18),
+      0 14px 24px rgba(99, 34, 12, 0.2);
+  }
+
+  /* Tarjeta crema estándar (tarjetas de retos de la landing). */
+  .tarjeta-crema {
+    position: relative;
+    border-radius: 2rem;
+    border: 1px solid var(--color-borde);
+    background: linear-gradient(180deg, rgba(255, 251, 245, 0.95), rgba(255, 238, 212, 0.78));
+    box-shadow:
+      0 22px 44px rgba(171, 91, 27, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  }
+
+  /* Panel naranja-brasa ("No es motivación. Es estructura."). */
+  .panel-brasa {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #fff7ef;
+    background: linear-gradient(180deg, #ff7432 0%, #e0561f 58%, #a73818 100%);
+    box-shadow:
+      0 30px 70px rgba(97, 27, 9, 0.26),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .panel-brasa::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 82% 10%, rgba(255, 196, 110, 0.32), transparent 24%),
+      radial-gradient(circle at 12% 88%, rgba(255, 120, 63, 0.26), transparent 30%);
+  }
+
+  .panel-brasa > * {
+    position: relative;
+  }
+
+  /* Distribución del dashboard "Hoy". */
+  .rejilla-hoy {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "ahora" "progreso" "agenda" "racha" "resumen";
+  }
+
+  @media (min-width: 768px) {
+    .rejilla-hoy {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        "ahora ahora"
+        "progreso racha"
+        "agenda agenda"
+        "resumen resumen";
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .rejilla-hoy {
+      gap: 1.5rem;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas:
+        "ahora progreso"
+        "agenda racha"
+        "agenda resumen";
+    }
+  }
+}
+
+/* En pantallas táctiles quitamos los desenfoques más costosos. */
+@media (hover: none) and (pointer: coarse) {
+  .orbe {
+    display: none;
+  }
+}
