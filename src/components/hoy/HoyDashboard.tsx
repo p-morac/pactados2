@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { TextoFuego, TextoSolido } from "@/components/marca/TextoFuego";
+import { obtenerUsuarioGuardado } from "@/lib/auth-client";
 import { rachaDestacada, resumirDia } from "@/lib/hoy-utils";
 import type { HabitoDelDia, MetaEnCurso, UsuarioHoy } from "@/types/habitos";
 
@@ -21,7 +22,13 @@ interface HoyDashboardProps {
 }
 
 export function HoyDashboard({ usuario, metaEnCurso, habitosIniciales, horaActual }: HoyDashboardProps) {
+  const [usuarioActual, setUsuarioActual] = useState(usuario);
   const [habitos, setHabitos] = useState(habitosIniciales);
+
+  useEffect(() => {
+    const usuarioGuardado = obtenerUsuarioGuardado();
+    if (usuarioGuardado) setUsuarioActual(usuarioGuardado);
+  }, []);
 
   const resumen = resumirDia(habitos);
   const destacada = rachaDestacada(habitos);
@@ -43,7 +50,7 @@ export function HoyDashboard({ usuario, metaEnCurso, habitosIniciales, horaActua
       <header className="mb-7 lg:mb-8">
         <h1 className="font-display text-[clamp(2.9rem,6vw,4.8rem)] uppercase leading-[0.9] tracking-tight">
           <TextoSolido>{usuario.saludo} </TextoSolido>
-          <TextoFuego>{usuario.nombre}</TextoFuego>
+          <TextoFuego>{usuarioActual.nombre}</TextoFuego>
         </h1>
         <p className="font-body mt-2 text-[1.02rem] text-cafe md:text-[1.08rem]">
           Hoy tienes metas que cumplir. ¡Paso a paso!

@@ -1,11 +1,23 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { BarraLateral, BarraSuperiorMovil, NavInferiorMovil } from "@/components/app/AppNav";
+import { obtenerUsuarioGuardado } from "@/lib/auth-client";
 import { USUARIO_DEMO } from "@/lib/hoy-mock";
 import { iniciales } from "@/lib/hoy-utils";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  const [nombreCompleto, setNombreCompleto] = useState(USUARIO_DEMO.nombreCompleto);
+
+  useEffect(() => {
+    const usuarioGuardado = obtenerUsuarioGuardado();
+    if (usuarioGuardado) setNombreCompleto(usuarioGuardado.nombreCompleto);
+  }, []);
+
   return (
     <div className="escenario-crema">
-      <BarraSuperiorMovil iniciales={iniciales(USUARIO_DEMO.nombreCompleto)} />
+      <BarraSuperiorMovil iniciales={iniciales(nombreCompleto)} />
 
       <div className="mx-auto flex w-full max-w-[1440px] gap-8 px-4 sm:px-6 lg:px-4 lg:py-4">
         <BarraLateral />
