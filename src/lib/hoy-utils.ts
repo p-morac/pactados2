@@ -59,12 +59,3 @@ export function plural(n: number, singular: string, pluralForma = `${singular}s`
   return n === 1 ? singular : pluralForma;
 }
 
-/** "Mariana Quintero" → "MQ" */
-export function iniciales(nombre: string) {
-  return nombre
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((parte) => parte[0]?.toUpperCase() ?? "")
-    .join("");
-}

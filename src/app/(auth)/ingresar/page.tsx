@@ -11,8 +11,13 @@ export const metadata: Metadata = {
 export default function IngresarPage() {
   return (
     <AuthShell
-      titulo={{ antes: "Crea hábitos de vida y", destacado: "mantenlos", despues: "con nosotros" }}
-      descripcion="Únete a una comunidad de personas enfocadas en dar pasos firmes todos los días. Diseña tu rutina, configura alarmas y celebra tu consistencia."
+      tituloGrande
+      titulo={["Crea hábitos de vida y", "mantenlos con", "nosotros"]}
+      descripcion={[
+        "Únete a una comunidad de personas enfocadas en dar",
+        "pasos firmes todos los días. Diseña tu rutina, configura",
+        "alarmas y celebra tu consistencia.",
+      ]}
     >
       <LoginForm />
     </AuthShell>

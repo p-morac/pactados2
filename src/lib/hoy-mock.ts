@@ -17,11 +17,10 @@ export const HORA_DEMO = "12:00";
 export const META_EN_CURSO_DEMO: MetaEnCurso = {
   id: "agua",
   hora: "12:00",
-  nombre: "Tomar agua",
+  nombre: "Tomar Agua",
   categoria: "salud",
-  meta: "2 litros diarios",
+  meta: "2 Litros diarios",
   progreso: 60,
-  icono: "agua",
 };
 
 /**

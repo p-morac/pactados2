@@ -11,8 +11,12 @@ export const metadata: Metadata = {
 export default function RecuperarPage() {
   return (
     <AuthShell
-      titulo={{ antes: "¿Problemas para", destacado: "ingresar?" }}
-      descripcion="No te preocupes, todos olvidamos las llaves alguna vez. Confirma tus datos de registro y restablece tu contraseña para volver de inmediato a tus metas."
+      titulo={["¿Problemas para", "ingresar?"]}
+      descripcion={[
+        "No te preocupes, todos olvidamos las llaves alguna",
+        "vez. Confirma tus datos de registro y restablece tu",
+        "contraseña para volver de inmediato a tus metas.",
+      ]}
     >
       <RecuperarForm />
     </AuthShell>

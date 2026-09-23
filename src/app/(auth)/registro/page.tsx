@@ -11,8 +11,12 @@ export const metadata: Metadata = {
 export default function RegistroPage() {
   return (
     <AuthShell
-      titulo={{ antes: "Comienza tu camino hacia una vida", destacado: "organizada" }}
-      descripcion="Establece tus objetivos personales de salud, mente y actividad. Con Pactados, cada pequeño esfuerzo queda registrado."
+      titulo={["Comienza tu camino", "hacia una vida", "organizada"]}
+      descripcion={[
+        "Establece tus objetivos personales de salud, mente y",
+        "actividad. Con Pactados, cada pequeño esfuerzo",
+        "queda registrado.",
+      ]}
     >
       <RegistroForm />
     </AuthShell>

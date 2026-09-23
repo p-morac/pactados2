@@ -1,60 +1,25 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 
-/** Logo completo (manos + fuego + "pactados") para fondos claros. */
-export function Logo({ className, href = "/" }: { className?: string; href?: string }) {
+import { Llama } from "./Llama";
+
+/** Logo grande de las pantallas de acceso: llama + "Pactados" (40px). */
+export function Logo({ className }: { className?: string }) {
   return (
-    <Link
-      href={href}
-      className={cn(
-        "inline-block rounded-2xl transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-fuego/30",
-        className
-      )}
-    >
-      <Image
-        src="/pactados-logo.png"
-        alt="Pactados"
-        width={505}
-        height={237}
-        priority
-        className="h-auto w-full object-contain"
-      />
-    </Link>
+    <p className={cn("flex items-center", className)}>
+      <span className="flex h-10 w-10 items-center justify-center">
+        <Llama className="h-[34.42px] w-[25.34px]" />
+      </span>
+      <span className="ml-[7.5px] text-[40px] font-extrabold leading-none tracking-[0.4px]">Pactados</span>
+    </p>
   );
 }
 
-/** Marca compacta: fuego + "Pactados" en Bebas. */
-interface MarcaCompactaProps {
-  className?: string;
-  /** Texto claro para usar sobre el panel naranja. */
-  claro?: boolean;
-  /** Tamaño del texto "Pactados". */
-  tamano?: "md" | "lg";
-}
-
-export function MarcaCompacta({ className, claro = false, tamano = "lg" }: MarcaCompactaProps) {
+/** Logo de la barra lateral (24px). */
+export function LogoCompacto({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span aria-hidden="true" className={cn("relative shrink-0", tamano === "lg" ? "h-10 w-8" : "h-8 w-6")}>
-        <Image
-          src="/fuego.png"
-          alt=""
-          fill
-          sizes="40px"
-          className="object-contain drop-shadow-[0_6px_10px_rgba(97,27,9,0.3)]"
-        />
-      </span>
-      <span
-        className={cn(
-          "font-display leading-none tracking-wide",
-          tamano === "lg" ? "text-[2.3rem]" : "text-[1.9rem]",
-          claro ? "text-[#fff7ef] [text-shadow:0_6px_18px_rgba(97,27,9,0.3)]" : "text-tinta"
-        )}
-      >
-        Pactados
-      </span>
+    <span className={cn("flex items-center gap-[11px]", className)}>
+      <Llama className="h-[18.6px] w-[13.7px]" />
+      <span className="text-[24px] font-extrabold leading-none">Pactados</span>
     </span>
   );
 }

@@ -1,16 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas",
-  subsets: ["latin"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -20,14 +14,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7eedc",
-  viewportFit: "cover",
+  themeColor: "#fff6ed",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${bebasNeue.variable} ${dmSans.variable}`}>
-      <body className="antialiased">{children}</body>
+    <html lang="es" className={inter.variable}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

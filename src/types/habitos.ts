@@ -1,8 +1,5 @@
 export type CategoriaHabito = "mente" | "salud" | "actividad";
 
-/** Nombre del ícono (lucide) que se muestra en la tarjeta "Ahora mismo". */
-export type IconoMeta = "agua" | "libro" | "caminar" | "estirar";
-
 export interface HabitoDelDia {
   id: string;
   /** Hora programada en formato 24 h, "HH:mm" (ej. "16:00"). */
@@ -25,7 +22,6 @@ export interface MetaEnCurso {
   meta: string;
   /** Porcentaje 0–100. */
   progreso: number;
-  icono: IconoMeta;
 }
 
 export interface UsuarioHoy {

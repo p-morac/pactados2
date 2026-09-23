@@ -12,11 +12,6 @@ export default function HoyPage() {
   // Datos de ejemplo. Con backend real: consulta aquí al usuario y sus hábitos del día,
   // y usa horaActual() de "@/lib/hoy-utils" en lugar de HORA_DEMO.
   return (
-    <HoyDashboard
-      usuario={USUARIO_DEMO}
-      metaEnCurso={META_EN_CURSO_DEMO}
-      habitosIniciales={HABITOS_DEMO}
-      horaActual={HORA_DEMO}
-    />
+    <HoyDashboard usuario={USUARIO_DEMO} metaEnCurso={META_EN_CURSO_DEMO} habitos={HABITOS_DEMO} horaActual={HORA_DEMO} />
   );
 }

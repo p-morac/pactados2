@@ -5,31 +5,21 @@ import { cn } from "@/lib/utils";
 interface AuthCardProps {
   titulo: string;
   children: ReactNode;
-  /** Enlaces secundarios bajo el formulario ("¿Ya tienes cuenta?…"). */
-  pie?: ReactNode;
-  className?: string;
+  /** Ancho en escritorio: 380px en /ingresar, 400px en registro y recuperar. */
+  angosta?: boolean;
 }
 
-/**
- * Tarjeta crema de Pactados con la "sombra sólida" naranja del prototipo
- * (una capa con el gradiente de los botones, desplazada abajo a la derecha).
- */
-export function AuthCard({ titulo, children, pie, className }: AuthCardProps) {
+/** Tarjeta blanca con la sombra sólida naranja del prototipo. */
+export function AuthCard({ titulo, children, angosta }: AuthCardProps) {
   return (
-    <div className={cn("relative", className)}>
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] bg-[linear-gradient(160deg,#ffb24c_0%,#ff8a2f_42%,#ff681b_100%)] shadow-[0_26px_44px_rgba(196,85,38,0.26)]"
-      />
-      <div className="relative rounded-[2rem] border border-borde bg-[linear-gradient(180deg,rgba(255,252,247,0.99),rgba(255,242,224,0.97))] p-6 shadow-[0_22px_44px_rgba(171,91,27,0.12),inset_0_1px_0_rgba(255,255,255,0.85)] sm:p-8">
-        <h2 className="font-display text-[2.35rem] uppercase leading-none tracking-tight sm:text-[2.6rem]">
-          <span className="titulo-solido">{titulo}</span>
-        </h2>
-
-        <div className="mt-6">{children}</div>
-
-        {pie ? <div className="mt-6 border-t border-[#efd9c1] pt-5">{pie}</div> : null}
-      </div>
+    <div
+      className={cn(
+        "w-full max-w-[400px] rounded-2xl bg-white p-8 shadow-[5px_5px_0_var(--color-naranja)] lg:mb-[2px] lg:shrink-0",
+        angosta ? "lg:w-[380px]" : "lg:w-[400px]"
+      )}
+    >
+      <h2 className="text-[20px] font-bold leading-6 tracking-[0.15px]">{titulo}</h2>
+      {children}
     </div>
   );
 }
