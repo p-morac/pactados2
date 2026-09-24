@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { ProgresoDashboard } from "@/components/progreso/ProgresoDashboard";
 
-import { EnConstruccion } from "@/components/app/EnConstruccion";
+export const metadata: Metadata = {
+  title: "Progreso - Pactados",
+  description: "Cada progreso cuenta como información no como juicio.",
+};
 
-export const metadata: Metadata = { title: "Progreso - Pactados" };
-
-export default function Page() {
-  return <EnConstruccion titulo="Progreso" descripcion="Aquí vas a ver tu cumplimiento, rachas y registros. Esta pantalla todavía no está construida." />;
+export default function ProgresoPage() {
+  // Aquí podrías cargar datos desde tu backend en el futuro
+  return <ProgresoDashboard />;
 }
