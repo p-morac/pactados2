@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Check, Music2 } from "lucide-react";
+import { Check } from "lucide-react";
+import { SelectorCancion } from "./SelectorCancion";
 import styles from "./alarmas.module.css";
 
 type Alarma = { id: string; nombre: string; hora: number; minuto: number; dias: number[]; descripcion: string; activa: boolean; cancion?: string };
@@ -32,7 +33,6 @@ export function AlarmasDashboard() {
   const [error, setError] = useState("");
   const modal = useRef<HTMLDialogElement>(null);
   const crear = useRef<HTMLButtonElement>(null);
-  const audio = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     try {
@@ -106,8 +106,7 @@ export function AlarmasDashboard() {
           </fieldset>
           <label htmlFor="alarma-descripcion">Descripción</label>
           <textarea id="alarma-descripcion" name="descripcion" placeholder="Escribe una descripción..." rows={2} maxLength={500} />
-          <input ref={audio} className={styles.archivo} type="file" accept="audio/*" aria-label="Seleccionar canción" onChange={event => setCancion(event.target.files?.[0]?.name ?? "")} />
-          <button className={styles.cancion} type="button" onClick={() => audio.current?.click()}><Music2 size={15} /><span>{cancion || "busca canción ♫"}</span></button>
+          <SelectorCancion valor={cancion} onSeleccionar={setCancion} claseBoton={styles.cancion} />
           {error && <p className={styles.error} role="alert">{error}</p>}
           <button ref={crear} className={styles.primario} type="submit">Crear Alarma</button>
         </form>
